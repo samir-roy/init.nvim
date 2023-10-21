@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
   use { 'terrortylor/nvim-comment' }
   -- minimap
   use { 'gorbit99/codewindow.nvim' }
+  -- start screen
+  use { 'mhinz/vim-startify' }
   -- indent guides
   use { 'lukas-reineke/indent-blankline.nvim' }
   -- git signs in sign column
