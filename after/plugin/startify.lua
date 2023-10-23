@@ -18,18 +18,15 @@ local function gitUntracked()
   end)
 end
 
-local function other()
-  return {
-    { line = 'explore', path = vim.fn.getcwd() },
-  }
-end
-
 vim.g.startify_lists = {
   { type = 'dir',        header = { '   MRU ' .. vim.fn.getcwd() } },
   { type = 'sessions',   header = { '   Sessions' } },
-  { type = 'bookmarks',  header = { '   Bookmarks' } },
   { type = gitModified,  header = { '   Git Modified' } },
   { type = gitUntracked, header = { '   Git Untracked' } },
+  { type = 'bookmarks',  header = { '   Bookmarks' } },
   { type = 'commands',   header = { '   Commands' } },
-  { type = other,   header = { '   Other' } },
+}
+
+vim.g.startify_commands = {
+  { x = { '<explore>', 'Ex' } },
 }
