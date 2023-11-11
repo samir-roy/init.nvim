@@ -21,5 +21,5 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
 -- list of recently opened files
 vim.keymap.set('n', '<leader>fr', function()
-  telescope.extensions.recent_files.pick()
+  telescope.extensions.recent_files.pick({ only_cwd = true })
 end)

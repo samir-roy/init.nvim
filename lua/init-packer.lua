@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' }
   }
+  -- git blame
+  use { 'f-person/git-blame.nvim' }
   -- treesitter for parsing
   use { 'nvim-treesitter/nvim-treesitter',
     { run = ':TSUpdate' },

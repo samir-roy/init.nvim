@@ -14,6 +14,9 @@ vim.keymap.set('n', 'Q', '<nop>')
 -- file explorer
 vim.keymap.set('n', '<leader>fx', vim.cmd.Ex)
 
+-- file (buffer) close
+vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
+
 -- clear search buffer
 vim.keymap.set('n', '<leader>cs', [[:let @/ = ""<CR>]])
 

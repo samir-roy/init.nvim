@@ -56,12 +56,6 @@ lsp_zero.on_attach(function(client, bufnr)
   -- ]], false)
 end)
 
--- configure language servers
-require('lspconfig').lua_ls.setup({})
-require('lspconfig').rust_analyzer.setup({})
-require('lspconfig').eslint.setup({})
-require('lspconfig').tsserver.setup({})
-
 -- set up language servers
 lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'tsserver', 'eslint' })
 
