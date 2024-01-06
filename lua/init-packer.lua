@@ -3,6 +3,8 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  -- nvim tree to replace netrw file explorer
+  use { 'nvim-tree/nvim-tree.lua' }
   -- telescope for finding and opening buffers
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.3',
     requires = {

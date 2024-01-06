@@ -28,5 +28,5 @@ vim.g.startify_lists = {
 }
 
 vim.g.startify_commands = {
-  { x = { '<explore>', 'Ex' } },
+  { x = { '<explore>', ':NvimTreeToggle<CR>' } },
 }
