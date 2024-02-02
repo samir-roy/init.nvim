@@ -37,7 +37,7 @@ vim.opt.scrolloff = 12
 vim.opt.signcolumn = 'yes'
 
 -- show guide at 120 column width
-vim.opt.colorcolumn = { 120 }
+-- vim.opt.colorcolumn = { 120 }
 
 -- allow hyphens in file names
 vim.opt.isfname:append('@-@')

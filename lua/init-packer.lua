@@ -63,4 +63,10 @@ return require('packer').startup(function(use)
       require('fidget').setup()
     end,
   }
+  -- find and replace text in files
+  use { 'nvim-pack/nvim-spectre',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+    }
+  }
 end)

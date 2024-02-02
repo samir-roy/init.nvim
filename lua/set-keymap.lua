@@ -25,7 +25,7 @@ vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', '<Cmd>b#<CR>', { silent = true })
 
 -- clear search buffer
-vim.keymap.set('n', '<leader>c', [[:let @/ = ""<CR>]])
+vim.keymap.set('n', '?', [[:let @/ = ""<CR>]])
 
 -- jump to beginning / end / matching bracket
 vim.keymap.set({ 'n', 'v' }, '<leader>b', '^')
@@ -57,4 +57,4 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 
 -- search and replace current word
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

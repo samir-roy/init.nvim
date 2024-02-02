@@ -2,6 +2,7 @@
 -- must be set before color scheme
 vim.g.shinjuku_bold = false
 vim.g.shinjuku_italic = false
+vim.g.shinjuku_cursorline_transparent = true;
 
 -- set the color scheme
 vim.cmd.colorscheme('shinjuku')
@@ -16,5 +17,5 @@ vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
 
 -- use black background on cursor line
--- vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#000000', fg = 'none })
--- vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = '#000000', fg = 'none' })
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#121212', fg = 'none' })
+vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = '#121212', fg = 'none' })

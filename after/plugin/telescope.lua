@@ -1,6 +1,23 @@
 local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
+telescope.setup {
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+        n = {
+          ["d"] = "delete_buffer",
+        }
+      }
+    }
+  }
+}
+
 telescope.load_extension('recent_files')
 
 -- lots of remaps for git files
@@ -17,6 +34,7 @@ vim.keymap.set('n', '<leader>fl', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fk', builtin.resume, {})
 -- list of file buffers
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>t', builtin.buffers, {})
 -- list of diagnostics in project
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
 -- list of recently opened files
