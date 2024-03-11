@@ -58,3 +58,6 @@ vim.keymap.set('n', '<leader>Y', '"+Y')
 
 -- search and replace current word
 vim.keymap.set('n', '<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- search for curent word and don't go to next match
+vim.keymap.set('n', '<leader>n', '*N')

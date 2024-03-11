@@ -58,7 +58,6 @@ return require('packer').startup(function(use)
   }
   -- show status of lsp servers
   use { 'j-hui/fidget.nvim',
-    tag = 'legacy',
     config = function()
       require('fidget').setup()
     end,

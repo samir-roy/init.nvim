@@ -18,6 +18,9 @@ local function gitUntracked()
   end)
 end
 
+-- do not change the working directory when opening files in startify
+vim.g.startify_change_to_dir = 0
+
 vim.g.startify_lists = {
   { type = 'dir',        header = { '   MRU ' .. vim.fn.getcwd() } },
   { type = 'sessions',   header = { '   Sessions' } },

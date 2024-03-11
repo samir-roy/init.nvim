@@ -2,6 +2,13 @@ local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
 telescope.setup {
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = "close",
+      }
+    }
+  },
   pickers = {
     buffers = {
       show_all_buffers = true,
