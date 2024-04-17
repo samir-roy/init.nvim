@@ -15,8 +15,8 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- save and save all
-vim.keymap.set('n', '<leader>w', ':w<CR>')
-vim.keymap.set('n', '<leader>W', ':wa<CR>')
+vim.keymap.set('n', '<leader>W', ':w<CR>')
+vim.keymap.set('n', '<leader>w', ':wa<CR>')
 
 -- file (buffer) close
 vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
@@ -25,7 +25,7 @@ vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', '<Cmd>b#<CR>', { silent = true })
 
 -- clear search buffer
-vim.keymap.set('n', '?', [[:let @/ = ""<CR>]])
+vim.keymap.set('n', '?', [[:let @/ = "" | echo ""<CR>]])
 
 -- jump to beginning / end / matching bracket
 vim.keymap.set({ 'n', 'v' }, '<leader>b', '^')

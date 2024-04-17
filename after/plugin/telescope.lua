@@ -3,6 +3,7 @@ local builtin = require('telescope.builtin')
 
 telescope.setup {
   defaults = {
+    layout_strategy = 'vertical',
     mappings = {
       n = {
         ["q"] = "close",
@@ -27,16 +28,17 @@ telescope.setup {
 
 telescope.load_extension('recent_files')
 
--- lots of remaps for git files
+-- multiple remaps for git files
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>p', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 -- find files in project
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fp', builtin.find_files, {})
 -- search for word under the cursor
 vim.keymap.set({ 'n', 'v' }, '<leader>fw', builtin.grep_string, {})
 -- search in files using grep
-vim.keymap.set('n', '<leader>fl', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
 -- reopen last search results
 vim.keymap.set('n', '<leader>fk', builtin.resume, {})
 -- list of file buffers
