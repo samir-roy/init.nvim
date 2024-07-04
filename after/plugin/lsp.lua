@@ -56,14 +56,25 @@ lsp_zero.on_attach(function(client, bufnr)
   -- ]], false)
 end)
 
+local language_servers = { 'lua_ls', 'rust_analyzer', 'tsserver', 'eslint', 'graphql' }
+
 -- set up language servers
-lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'tsserver', 'eslint' })
+lsp_zero.setup_servers(language_servers)
 
 -- set up mason for managing language servers
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'rust_analyzer', 'tsserver', 'eslint' },
+  ensure_installed = language_servers,
   handlers = {
     lsp_zero.default_setup,
   },
 })
+
+-- autocmd to close the quickfix window after selection an option from the list
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern={"qf"},
+    command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+  }
+)
