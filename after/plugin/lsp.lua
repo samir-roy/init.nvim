@@ -17,7 +17,7 @@ lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps(opts)
 
   -- disable typescript syntax highlighting
-  if client.name == 'tsserver' then
+  if client.name == 'ts_ls' then
     client.server_capabilities.semanticTokensProvider = nil
   end
 
@@ -56,7 +56,7 @@ lsp_zero.on_attach(function(client, bufnr)
   -- ]], false)
 end)
 
-local language_servers = { 'lua_ls', 'rust_analyzer', 'tsserver', 'eslint', 'graphql' }
+local language_servers = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint', 'graphql' }
 
 -- set up language servers
 lsp_zero.setup_servers(language_servers)
