@@ -68,4 +68,12 @@ return require('packer').startup(function(use)
       { 'nvim-lua/plenary.nvim' },
     }
   }
+
+  -- surround for editing surrounding delimiters
+  use { 'kylechui/nvim-surround',
+    tag = '*',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  }
 end)
