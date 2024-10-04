@@ -34,7 +34,9 @@ vim.keymap.set({ 'n', 'v' }, '<leader>m', '%')
 
 -- similar to page down and page up
 vim.keymap.set({ 'n', 'v' }, 'J', '20jzz')
+vim.keymap.set({ 'n', 'v' }, '<leader>j', '<C-d>zz')
 vim.keymap.set({ 'n', 'v' }, 'K', '20kzz')
+vim.keymap.set({ 'n', 'v' }, '<leader>k', '<C-u>zz')
 
 -- easily move selected lines in visual mode
 vim.keymap.set('v', 'L', ":m '>+1<CR>gv=gv")
