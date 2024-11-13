@@ -47,3 +47,10 @@ vim.o.fillchars = vim.o.fillchars .. 'eob:·'
 
 -- turn on smartcase when searching
 vim.cmd('set ignorecase smartcase')
+
+-- user defined function to copy relative path
+vim.api.nvim_create_user_command('CopyRelPath', function()
+  local path = vim.fn.expand('%:.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, {})
