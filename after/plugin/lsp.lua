@@ -46,7 +46,7 @@ lsp_zero.on_attach(function(client, bufnr)
   end
 
   -- don't show virtual text on each line
-  vim.diagnostic.config({ virtual_text = false })
+  vim.diagnostic.config({ virtual_text = false, severity_sort = true })
   -- instead open the float when the cursor is moved to a line with diagnostics
   -- vim.api.nvim_exec([[
   --   augroup LspCursorFloatAutocmd
