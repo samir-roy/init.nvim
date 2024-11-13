@@ -21,8 +21,23 @@ vim.keymap.set('n', '<leader>w', ':wa<CR>')
 -- file (buffer) close
 vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
 
--- jump to last buffer
+-- jump to last buffer (last accessed, not last in buffer list)
 vim.api.nvim_set_keymap('n', '<leader>l', '<Cmd>b#<CR>', { silent = true })
+
+-- jump to n-th buffer in buffer list (n-th lowest numbered buffer, not the buffer number)
+vim.api.nvim_set_keymap('n', '<leader>1', '<Cmd>bf<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>2', '<Cmd>bf | bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>3', '<Cmd>bf | 2bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>4', '<Cmd>bf | 3bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>5', '<Cmd>bf | 4bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>6', '<Cmd>bf | 5bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>7', '<Cmd>bf | 6bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>8', '<Cmd>bf | 7bn<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>9', '<Cmd>bf | 8bn<CR>', { silent = true })
+
+-- jump to prev/next buffer in buffer list
+vim.api.nvim_set_keymap('n', '<leader>[', '<Cmd>bN<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>]', '<Cmd>bn<CR>', { silent = true })
 
 -- clear search buffer
 vim.keymap.set('n', '?', [[:let @/ = "" | echo ""<CR>]])
