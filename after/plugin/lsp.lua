@@ -61,6 +61,16 @@ local language_servers = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint', 'graphq
 -- set up language servers
 lsp_zero.setup_servers(language_servers)
 
+-- secial configuration for ts_ls
+require('lspconfig').ts_ls.setup({
+  init_options = {
+    preferences = {
+      importModuleSpecifierPreference = 'relative',
+      importModuleSpecifierEnding = 'minimal',
+    },
+  }
+})
+
 -- set up mason for managing language servers
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -74,7 +84,7 @@ require('mason-lspconfig').setup({
 vim.api.nvim_create_autocmd(
   "FileType",
   {
-    pattern={"qf"},
-    command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
+    pattern = { "qf" },
+    command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
   }
 )

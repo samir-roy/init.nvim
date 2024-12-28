@@ -78,7 +78,7 @@ require('nvim-tree').setup({
           width = window_w,
           height = window_h,
         }
-        end,
+      end,
     },
     width = function()
       return vim.opt.columns:get() - 40
