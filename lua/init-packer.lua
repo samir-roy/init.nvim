@@ -23,8 +23,6 @@ return require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim' }
   -- easily comment lines
   use { 'terrortylor/nvim-comment' }
-  -- minimap
-  use { 'gorbit99/codewindow.nvim' }
   -- start screen
   use { 'mhinz/vim-startify' }
   -- indent guides

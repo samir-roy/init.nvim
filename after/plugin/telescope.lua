@@ -20,6 +20,7 @@ telescope.setup {
         },
         n = {
           ["d"] = "delete_buffer",
+          ["x"] = "delete_buffer",
         }
       }
     }
