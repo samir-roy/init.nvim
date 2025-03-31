@@ -21,15 +21,30 @@ end
 -- do not change the working directory when opening files in startify
 vim.g.startify_change_to_dir = 0
 
+-- set custom header to ascii art for neovim
+vim.g.startify_custom_header = {
+  '  ',
+  '  ',
+  '  ',
+  '  ',
+  '  ░░▀░░█▀▀▄░░▀░░▀█▀░░░░█▀▀▄░▄░░░▄░░▀░░█▀▄▀█░',
+  '  ░░█▀░█░▒█░░█▀░░█░░▄▄░█░▒█░░█▄█░░░█▀░█░▀░█░',
+  '  ░▀▀▀░▀░░▀░▀▀▀░░▀░░▀▀░▀░░▀░░░▀░░░▀▀▀░▀░░▒▀░',
+  '  ',
+  '  ',
+}
+
 vim.g.startify_lists = {
-  { type = 'dir',        header = { '   MRU ' .. vim.fn.getcwd() } },
-  { type = 'sessions',   header = { '   Sessions' } },
-  { type = gitModified,  header = { '   Git Modified' } },
+  { type = 'dir', header = { '   MRU ' .. vim.fn.getcwd() } },
+  { type = 'sessions', header = { '   Sessions' } },
+  { type = gitModified, header = { '   Git Modified' } },
   { type = gitUntracked, header = { '   Git Untracked' } },
-  { type = 'bookmarks',  header = { '   Bookmarks' } },
-  { type = 'commands',   header = { '   Commands' } },
+  { type = 'bookmarks', header = { '   Bookmarks' } },
+  { type = 'commands', header = { '   Commands' } },
 }
 
 vim.g.startify_commands = {
-  { x = { '<explore>', ':NvimTreeToggle<CR>' } },
+  { p = { '<picker>',  ':Telescope git_files' } },
+  { s = { '<search>',  ':lua require("spectre").open({is_insert_mode=true})' } },
+  { x = { '<explore>', ':NvimTreeToggle' } },
 }

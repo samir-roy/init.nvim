@@ -3,3 +3,4 @@
 indent_style = space
 indent_size = 2
 align_continuous_rect_table_field = false
+align_array_table = false

@@ -1,6 +1,6 @@
 -- set options
-require("set-opts")
+require("options").init()
 -- set key mappings
-require("set-keymap")
+require("keymaps").init()
 -- init plugins
-require("init-packer")
+require("plugins").init()

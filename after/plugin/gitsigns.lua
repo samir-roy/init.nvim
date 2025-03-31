@@ -66,23 +66,6 @@ require('gitsigns').setup {
       command! Blame lua GitsignsToggleBlame()
     ]], false)
 
-    -- toggle git blame for current line
-    -- vim.api.nvim_set_keymap('n', 'gb', ':lua GitsignsToggleBlame()<CR>', { silent = true })
-
-    local gs = package.loaded.gitsigns
-
-    -- jump to next hunk
-    vim.keymap.set('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, { expr = true, buffer = bufnr })
-
-    -- jump to prev hunk
-    vim.keymap.set('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, { expr = true, buffer = bufnr })
+    require('keymaps').set_keymaps_for_gitsigns(bufnr)
   end
 }

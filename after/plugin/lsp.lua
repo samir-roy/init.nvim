@@ -4,39 +4,16 @@ local lsp_zero = require('lsp-zero')
 local cmp = require('cmp')
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-    -- use tab and shift-tab to cycle through items
     ['<tab>'] = cmp.mapping.select_next_item(),
     ['<S-tab>'] = cmp.mapping.select_prev_item(),
   })
 })
 
----@diagnostic disable-next-line: unused-local
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings to learn the available actions
-  local opts = { buffer = bufnr, remap = false }
-  lsp_zero.default_keymaps(opts)
-
   -- disable typescript syntax highlighting
   if client.name == 'ts_ls' then
     client.server_capabilities.semanticTokensProvider = nil
   end
-
-  -- show hover info
-  vim.keymap.set('n', '<leader>i', function() vim.lsp.buf.hover() end, opts)
-  -- list available code actions
-  vim.keymap.set('n', '<leader>a', function() vim.lsp.buf.code_action() end, opts)
-  -- go to definition - same as gd
-  vim.keymap.set('n', '<leader>g', function() vim.lsp.buf.definition() end, opts)
-  -- open diagnostics float
-  vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end, opts)
-
-  -- format using lsp
-  vim.keymap.set({ 'n', 'x' }, '<leader>.', function()
-    vim.lsp.buf.format({
-      async = false,
-      timeout_ms = 3000,
-    })
-  end, opts)
 
   -- override sign characters in sign column
   local signs = { Error = "×", Warn = "▲", Hint = "•", Info = "◦" }
@@ -47,13 +24,9 @@ lsp_zero.on_attach(function(client, bufnr)
 
   -- don't show virtual text on each line
   vim.diagnostic.config({ virtual_text = false, severity_sort = true })
-  -- instead open the float when the cursor is moved to a line with diagnostics
-  -- vim.api.nvim_exec([[
-  --   augroup LspCursorFloatAutocmd
-  --     autocmd!
-  --     autocmd CursorMoved * lua vim.diagnostic.open_float()
-  --   augroup END
-  -- ]], false)
+
+  -- load keymaps defined in keymaps.lua
+  require('keymaps').set_keymaps_for_lsp(bufnr);
 end)
 
 local language_servers = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint', 'graphql' }
@@ -79,6 +52,9 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
   },
 })
+
+-- set up fidget for displaying lsp progress
+require('fidget').setup()
 
 -- autocmd to close the quickfix window after selection an option from the list
 vim.api.nvim_create_autocmd(

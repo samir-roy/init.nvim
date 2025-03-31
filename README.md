@@ -30,16 +30,87 @@ git clone https://github.com/samir-roy/init.nvim.git "${XDG_CONFIG_HOME:-$HOME/.
 
 ```sh
 # on Windows
-git clone https://github.com/samir-roy/init.nvim.git %userprofile%\AppData\Local\nvim\ 
+git clone https://github.com/samir-roy/init.nvim.git %userprofile%\AppData\Local\nvim\
 ```
 
 ### Post Installation
 
-Run the following command and then **you are ready to go**!
+When you first open Neovim, Lazy.nvim plugin manager will automatically install,
+followed by all the configured plugins.
 
+Alternatively, you can run:
 ```sh
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim --headless "+Lazy! sync" +qa
 ```
 
-In case the above command fails, start `nvim` and then type `:PackerSync`.
 
+## Keymaps
+
+The leader key is `<space>` since the space bar is easy to reach.
+
+### File Picker
+- `<C-p>` - picker (files in git repository)
+- `<leader>p` - picker (files in git repository)
+- `<leader>x` - xplorer (toggle file explorer using nvim-tree)
+- `<leader>t` - tabs (list of open buffers)
+
+### Buffer Navigation
+- `<leader>fc` - close current buffer
+- `<leader>l` - jump to last accessed buffer
+- `<leader>1-9` - jump to nth buffer
+- `<leader>[` - previous buffer
+- `<leader>]` - next buffer
+
+### Movement
+- `<leader>b` - jump to line start (same as $)
+- `<leader>e` - jump to line end (same as ^)
+- `<leader>m` - jump to matching bracket (same as %)
+- `<leader>j/k` - page down/up (centered)
+- `[[` and `]]` - jump to prev/next in jump list
+- `]c` and `[c` - jump to prev/next hunk (git change)
+
+### Insert Mode
+- `jj` - easier escape out of insert mode
+- `<C-h>` - cursor movement left
+- `<C-j>` - cursor movement down
+- `<C-k>` - cursor movement up
+- `<C-l>` - cursor movement right
+
+### Normal mode
+- `?` - clear search highlighting
+- `<leader>n` - search for current word while keeping cursor in place
+- `<leader>r` - search and replace current word
+- `<leader>u` - show / hide undo tree
+- `<leader>w` - save all buffers (same as :wa)
+- `<leader>W` - save current buffer (same as :w)
+
+### Visual Mode
+- `L` - easily move selected lines down
+- `H` - easily move selected lines up
+
+### Normal or Visual Mode
+- `<leader>P` - paste without replacing clipboard
+- `<leader>y` - yank to system clipboard
+- `<leader>Y` - yank to system clipboard (line)
+- `<leader>/` - comment / uncomment current line or selection
+
+### Language Server
+- `<leader>i` - info (show hover info)
+- `<leader>a` - actions (list available code actions)
+- `<leader>g` - go to definition (same as gd)
+- `<leader>d` - diagnostics (open float)
+- `<leader>.` - format file using lsp
+
+### Find Files (using telescope)
+- `<leader>fp` - find files in project folder
+- `<leader>fw` - find word under the cursor
+- `<leader>ff` - find in files using grep
+- `<leader>fk` - kontinue find (reopen results)
+- `<leader>fd` - files having diagnostics
+- `<leader>fr` - recently opened files
+
+### Search and Replace in Files (using spectre)
+- `<leader>ss` - search and replace
+- `<leader>S` - search and replace in split screen
+- `<leader>sw` - search for word under the cursor
+- `<leader>sw` (visual) - search for text in selection
