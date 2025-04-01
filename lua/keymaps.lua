@@ -178,6 +178,47 @@ M.set_keymaps_for_plugins = function()
 
   -- comment / uncomment current line or selection
   vim.keymap.set({ 'n', 'x' }, '<leader>/', ':CommentToggle<CR>', { silent = true })
+
+  -- chat with ai coding assistant (currently using augment)
+  vim.keymap.set('n', '<leader>c', function()
+    local message = vim.fn.input('copilot: ')
+    if message == '' then
+      vim.cmd('echo ""')
+      return
+    end
+    vim.cmd('Augment chat ' .. message)
+  end)
+
+  -- chat with ai coding assistant regarding selection
+  vim.keymap.set('v', '<leader>c', function()
+    -- save the buffer before prompt
+    local bufnr = vim.api.nvim_get_current_buf()
+    -- save the start and end of visual selection
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+    -- prompt for message
+    local message = vim.fn.input('copilot: ')
+    if message == '' then return end
+    -- ensure we're back in the correct buffer
+    vim.api.nvim_set_current_buf(bufnr)
+    -- restore the visual selection
+    vim.fn.setpos("'<", start_pos)
+    vim.fn.setpos("'>", end_pos)
+    -- reselect the last visual selection
+    vim.cmd('silent! normal! gv')
+    -- execute command with selection
+    vim.cmd("'<,'>Augment chat " .. message)
+  end)
+
+  -- ask ai to explain selection
+  vim.keymap.set('v', '<leader>E', function()
+    vim.cmd("'<,'>Augment chat explain this")
+  end)
+
+  -- toggle ai chat window
+  vim.keymap.set({ 'n', 'v' }, '<leader>C', function()
+    vim.cmd('Augment chat-toggle')
+  end)
 end
 
 return M

@@ -114,3 +114,9 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `<leader>S` - search and replace in split screen
 - `<leader>sw` - search for word under the cursor
 - `<leader>sw` (visual) - search for text in selection
+
+### AI Assistant
+- `<leader>C` - toggle ai chat window
+- `<leader>c` - chat with ai coding assistant
+- `<leader>c` (visual) - chat with ai coding assistant regarding selection
+- `<leader>E` (visual) - ask ai to explain selection

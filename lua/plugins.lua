@@ -63,6 +63,8 @@ M.init = function()
         { 'j-hui/fidget.nvim' },
       }
     },
+    -- augment ai assistant
+    { 'augmentcode/augment.vim' },
   })
 end
 
