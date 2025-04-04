@@ -57,6 +57,10 @@ M.init = function()
     vim.fn.setreg('+', path)
     vim.notify('Copied: ' .. path)
   end, {})
+
+  -- augment options need to be set before loading plugins
+  vim.g.augment_disable_tab_mapping = true
+  -- vim.g.augment_disable_completions = true
 end
 
 return M
