@@ -25,22 +25,22 @@ M.init = function()
   vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
 
   -- jump to last buffer (last accessed, not last in buffer list)
-  vim.api.nvim_set_keymap('n', '<leader>l', '<Cmd>b#<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>l', '<CMD>b#<CR>', { silent = true })
 
   -- jump to n-th buffer in buffer list (n-th lowest numbered buffer, not the buffer number)
-  vim.api.nvim_set_keymap('n', '<leader>1', '<Cmd>bf<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>2', '<Cmd>bf | bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>3', '<Cmd>bf | 2bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>4', '<Cmd>bf | 3bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>5', '<Cmd>bf | 4bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>6', '<Cmd>bf | 5bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>7', '<Cmd>bf | 6bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>8', '<Cmd>bf | 7bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>9', '<Cmd>bf | 8bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>1', '<CMD>bf<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>2', '<CMD>bf | bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>3', '<CMD>bf | 2bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>4', '<CMD>bf | 3bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>5', '<CMD>bf | 4bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>6', '<CMD>bf | 5bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>7', '<CMD>bf | 6bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>8', '<CMD>bf | 7bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>9', '<CMD>bf | 8bn<CR>', { silent = true })
 
   -- jump to prev/next buffer in buffer list
-  vim.api.nvim_set_keymap('n', '<leader>[', '<Cmd>bN<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>]', '<Cmd>bn<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>[', '<CMD>bN<CR>', { silent = true })
+  vim.api.nvim_set_keymap('n', '<leader>]', '<CMD>bn<CR>', { silent = true })
 
   -- clear search buffer
   vim.keymap.set('n', '?', [[:let @/ = "" | echo ""<CR>]])
@@ -81,6 +81,9 @@ M.init = function()
 
   -- search for curent word and don't go to next match
   vim.keymap.set('n', '<leader>n', '*N')
+
+  -- close other windows
+  vim.keymap.set('n', '<leader>o', ':only<CR>')
 end
 
 -- lsp keymaps are defined during on_attach (lsp.lua)
@@ -162,16 +165,16 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set('n', '<leader>x', ':NvimTreeToggle<CR>', { silent = true })
 
   -- search and replace using spectre
-  vim.keymap.set('n', '<leader>ss', '<cmd>lua require("spectre").open({is_insert_mode=true})<CR><C-w>o')
+  vim.keymap.set('n', '<leader>ss', '<CMD>lua require("spectre").open({is_insert_mode=true})<CR><C-w>o')
 
   -- search and replace using spectre in split screen
-  vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open({is_insert_mode=true})<CR>')
+  vim.keymap.set('n', '<leader>S', '<CMD>lua require("spectre").open({is_insert_mode=true})<CR>')
 
   -- search for word under the cursor using spectre
-  vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR><C-w>o')
+  vim.keymap.set('n', '<leader>sw', '<CMD>lua require("spectre").open_visual({select_word=true})<CR><C-w>o')
 
   -- search for selection in visual mode using spectre
-  vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR><C-w>o')
+  vim.keymap.set('v', '<leader>sw', '<ESC><CMD>lua require("spectre").open_visual()<CR><C-w>o')
 
   -- show / hide undo tree
   vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)

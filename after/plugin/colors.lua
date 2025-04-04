@@ -7,6 +7,9 @@ vim.g.shinjuku_italic = false
 -- disable theme background
 vim.g.shinjuku_disable_background = true
 
+-- use minimal syntax highlighting by default
+-- vim.g.shinjuku_minimal_syntax = true
+
 -- set the color scheme
 vim.cmd.colorscheme('shinjuku')
 

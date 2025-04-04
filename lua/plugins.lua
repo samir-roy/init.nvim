@@ -65,6 +65,10 @@ M.init = function()
     },
     -- augment ai assistant
     { 'augmentcode/augment.vim' },
+  }, {
+    checker = {
+      frequency = 30 * 24 * 60 * 60,
+    },
   })
 end
 
