@@ -63,6 +63,10 @@ M.init = function()
         { 'j-hui/fidget.nvim' },
       }
     },
+  }, {
+    checker = {
+      frequency = 30 * 24 * 60 * 60,
+    },
   })
 end
 
