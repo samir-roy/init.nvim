@@ -43,7 +43,7 @@ M.init = function()
   vim.api.nvim_set_keymap('n', '<leader>]', '<CMD>bn<CR>', { silent = true })
 
   -- clear search buffer
-  vim.keymap.set('n', '?', [[:let @/ = "" | echo ""<CR>]])
+  vim.keymap.set('n', '?', [[:noh | echo ""<CR>]])
 
   -- jump to beginning / end / matching bracket
   vim.keymap.set({ 'n', 'v' }, '<leader>b', '^')
