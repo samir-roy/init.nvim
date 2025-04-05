@@ -31,3 +31,6 @@ require('ibl').setup {
     priority = 9,
   }
 }
+
+-- augment code completion virtual text color
+vim.api.nvim_set_hl(0, 'AugmentSuggestionHighlight', { fg = '#585858' })
