@@ -4,7 +4,7 @@ local lsp_zero = require('lsp-zero')
 local cmp = require('cmp')
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-    ['<S-tab>'] = cmp.mapping.select_next_item(),
+    ['<tab>'] = cmp.mapping.select_next_item(),
     ['<A-tab>'] = cmp.mapping.select_prev_item(),
   })
 })

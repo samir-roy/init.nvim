@@ -222,6 +222,9 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set({ 'n', 'v' }, '<leader>C', function()
     vim.cmd('Augment chat-toggle')
   end)
+
+  -- map augment accept to ctrl+z                                   
+  vim.keymap.set('i', '<S-Tab>', '<CMD>call augment#Accept()<CR>')
 end
 
 return M
