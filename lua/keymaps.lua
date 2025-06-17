@@ -83,7 +83,7 @@ M.init = function()
   vim.keymap.set('n', '<leader>n', '*N')
 
   -- close other windows
-  vim.keymap.set('n', '<leader>o', ':only<CR>')
+  vim.keymap.set('n', '<leader>o', ':only<CR>', { silent = true })
 end
 
 -- lsp keymaps are defined during on_attach (lsp.lua)
@@ -134,9 +134,13 @@ M.set_keymaps_for_plugins = function()
   -- telescope related keymaps
   local telescope = require('telescope.builtin')
 
-  -- multiple remaps for git files
+  -- picker for git files
   vim.keymap.set('n', '<C-p>', telescope.git_files, {})
-  vim.keymap.set('n', '<leader>p', telescope.git_files, {})
+
+  -- picker for files that are not gitignored
+  vim.keymap.set('n', '<leader>p', function()
+    telescope.find_files({ respect_gitignore = true, hidden = false })
+  end, {})
 
   -- find files in project folder
   vim.keymap.set('n', '<leader>fp', telescope.find_files, {})
