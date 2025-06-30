@@ -93,7 +93,7 @@ M.set_keymaps_for_lsp = function(bufnr)
   require('lsp-zero').default_keymaps(opts)
 
   -- show hover info
-  vim.keymap.set('n', '<leader>i', function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set('n', '<leader>i', function() vim.lsp.buf.hover({ border = 'rounded' }) end, opts)
   -- list available code actions
   vim.keymap.set('n', '<leader>a', function() vim.lsp.buf.code_action() end, opts)
   -- go to definition - same as gd
