@@ -57,6 +57,9 @@ M.init = function()
     vim.fn.setreg('+', path)
     vim.notify('Copied: ' .. path)
   end, {})
+
+  -- disable copilot tab mapping (before plugin loads)
+  vim.g.copilot_no_tab_map = true
 end
 
 return M

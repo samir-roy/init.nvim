@@ -48,6 +48,8 @@ M.init = function()
     { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- treesitter for parsing
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    -- copilot
+    { 'github/copilot.vim' },
     -- language server support
     {
       'VonHeikemen/lsp-zero.nvim',
