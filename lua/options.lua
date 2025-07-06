@@ -56,6 +56,11 @@ M.init = function()
 
   -- check for file changes when switching focus
   vim.api.nvim_create_autocmd({ 'FocusGained' }, { pattern = '*', command = 'checktime' })
+
+  -- disable copilot tab mapping and file types (before plugin loads)
+  vim.g.copilot_no_tab_map = true
+  vim.g.copilot_filetypes = { markdown = false, json = false }
+  vim.g.copilot_node_command = vim.fn.expand('~/.nvm/versions/node/v22.21.1/bin/node')
 end
 
 return M

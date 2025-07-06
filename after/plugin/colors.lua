@@ -26,3 +26,6 @@ require('ibl').setup {
     priority = 9,
   }
 }
+
+-- copilot suggestion color
+vim.api.nvim_set_hl(0, 'CopilotSuggestion', { fg = '#585858' })

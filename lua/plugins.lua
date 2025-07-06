@@ -58,6 +58,8 @@ M.init = function()
     { 'neovim/nvim-lspconfig' },
     -- lsp progress indicator
     { 'j-hui/fidget.nvim' },
+    -- copilot
+    { 'github/copilot.vim' },
   }, {
     checker = {
       frequency = 30 * 24 * 60 * 60,
