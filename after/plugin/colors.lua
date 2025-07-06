@@ -34,3 +34,6 @@ require('ibl').setup {
 
 -- configure matchup word highlight color
 vim.api.nvim_set_hl(0, 'MatchWord', { bg = '#292922' })
+
+-- copilot suggestion color
+vim.api.nvim_set_hl(0, 'CopilotSuggestion', { fg = '#585858' })

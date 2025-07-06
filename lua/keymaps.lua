@@ -239,6 +239,12 @@ M.set_keymaps_for_plugins = function()
       { 'k', '<C-u>zz', { desc = 'page up' } },
     },
   })
+
+  -- map copilot accept since tab is disabled
+  vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<CR>")', {
+    expr = true,
+    replace_keycodes = false
+  })
 end
 
 return M
