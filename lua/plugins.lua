@@ -20,6 +20,8 @@ M.init = function()
   require("lazy").setup({
     -- shinjuku color scheme
     { 'samir-roy/shinjuku.nvim' },
+    -- code-bridge for ai chat
+    { 'samir-roy/code-bridge.nvim' },
     -- nicer status line
     { 'nvim-lualine/lualine.nvim' },
     -- start screen

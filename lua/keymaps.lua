@@ -185,6 +185,15 @@ M.set_keymaps_for_plugins = function()
 
   -- comment / uncomment current line or selection
   vim.keymap.set({ 'n', 'x' }, '<leader>/', ':CommentToggle<CR>', { silent = true })
+
+  -- claude code query (chat with file context)
+  vim.keymap.set({ 'n', 'x' }, '<leader>c', ':CodeBridgeQuery<CR>', { silent = true })
+
+  -- claude code chat (no file context)
+  vim.keymap.set('n', '<leader>q', ':CodeBridgeChat<CR>', { silent = true })
+
+  -- claude tmux command (send file context to tmux or clipboard)
+  vim.keymap.set({ 'n', 'x' }, '<leader>C', ':CodeBridgeTmux<CR>', { silent = true })
 end
 
 return M

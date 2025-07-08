@@ -4,6 +4,8 @@
 -- this file is named zzzrunlast.lua to ensure it is loaded last
 -- keymaps are set the end of this file after loading all plugins
 
+require('code-bridge').setup()
+
 require('nvim-surround').setup()
 
 require('nvim_comment').setup({
