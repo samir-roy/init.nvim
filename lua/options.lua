@@ -57,6 +57,12 @@ M.init = function()
     vim.fn.setreg('+', path)
     vim.notify('Copied: ' .. path)
   end, {})
+
+  -- format using dprint
+  vim.api.nvim_create_user_command('F', function()
+    vim.cmd('write')
+    vim.cmd('silent! !npx dprint fmt %')
+  end, {})
 end
 
 return M

@@ -6,6 +6,9 @@ M.init = function()
   -- leader key is noop
   vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+  -- no shift command prompt
+  vim.keymap.set({ 'n', 'v' }, '<Space>;', ':')
+
   -- easier jump to prev and next
   vim.keymap.set('n', '[[', '<C-o>')
   vim.keymap.set('n', ']]', '<C-i>')
@@ -186,14 +189,13 @@ M.set_keymaps_for_plugins = function()
   -- comment / uncomment current line or selection
   vim.keymap.set({ 'n', 'x' }, '<leader>/', ':CommentToggle<CR>', { silent = true })
 
-  -- claude code query (chat with file context)
-  vim.keymap.set({ 'n', 'x' }, '<leader>c', ':CodeBridgeQuery<CR>', { silent = true })
-
-  -- claude code chat (no file context)
-  vim.keymap.set('n', '<leader>q', ':CodeBridgeChat<CR>', { silent = true })
-
-  -- claude tmux command (send file context to tmux or clipboard)
-  vim.keymap.set({ 'n', 'x' }, '<leader>C', ':CodeBridgeTmux<CR>', { silent = true })
+  -- chat with ai coding agent like claude code
+  vim.keymap.set('n', '<leader>cq', ':CodeBridgeChat<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>cc', ':CodeBridgeQuery<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>cs', ':CodeBridgeTmux<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>ci', ':CodeBridgeTmuxInteractive<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>ca', ':CodeBridgeTmuxAllInteractive<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>c', '<Nop>', { silent = true })
 end
 
 return M
