@@ -48,10 +48,9 @@ M.init = function()
   -- clear search buffer
   vim.keymap.set('n', '?', [[:noh | echo ""<CR>]])
 
-  -- jump to beginning / end / matching bracket
+  -- jump to beginning / end
   vim.keymap.set({ 'n', 'v' }, '<leader>b', '^')
   vim.keymap.set({ 'n', 'v' }, '<leader>e', '$')
-  vim.keymap.set({ 'n', 'v' }, '<leader>m', '%')
 
   -- similar to page down and page up
   vim.keymap.set({ 'n', 'v' }, 'J', 'j')
@@ -196,6 +195,50 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set({ 'n', 'x' }, '<leader>ci', ':CodeBridgeTmuxInteractive<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>ca', ':CodeBridgeTmuxAllInteractive<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>c', '<Nop>', { silent = true })
+
+  -- create hydras for page scrolling
+  local hydra = require('hydra')
+  hydra({
+    name = 'scroll down',
+    mode = { 'n', 'x' },
+    body = '<leader>j',
+    config = {
+      invoke_on_body = true,
+      timeout = 2000,
+      hint = {
+        type = 'cmdline',
+        show_name = true,
+      },
+      on_enter = function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-d>zz', true, false, true), 'n', true)
+      end,
+    },
+    heads = {
+      { 'j', '<C-d>zz', { desc = 'page down' } },
+    },
+  })
+  hydra({
+    name = 'scroll down',
+    mode = { 'n', 'x' },
+    body = '<leader>k',
+    config = {
+      invoke_on_body = true,
+      timeout = 2000,
+      hint = {
+        type = 'cmdline',
+        show_name = true,
+      },
+      on_enter = function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-u>zz', true, false, true), 'n', true)
+      end,
+    },
+    heads = {
+      { 'k', '<C-u>zz', { desc = 'page up' } },
+    },
+  })
+
+  -- alternative to jump match - defined after plugins to use match-up
+  vim.keymap.set({ 'n', 'v' }, '<leader>m', '<plug>(matchup-%)')
 end
 
 return M
