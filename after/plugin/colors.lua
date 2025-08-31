@@ -33,4 +33,4 @@ require('ibl').setup {
 }
 
 -- configure matchup word highlight color
-vim.api.nvim_set_hl(0, 'MatchWord', { underline = true })
+vim.api.nvim_set_hl(0, 'MatchWord', { bg = '#292922' })
