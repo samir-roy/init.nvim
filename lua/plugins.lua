@@ -44,8 +44,6 @@ M.init = function()
     { 'kylechui/nvim-surround', version = "^3", event = "VeryLazy" },
     -- hydra allows for custom submodes used for page scroll mapping
     { 'nvimtools/hydra.nvim' },
-    -- better matching to improve % - works with lua, jsx, etc
-    { 'andymass/vim-matchup' },
     -- git blame
     { 'f-person/git-blame.nvim' },
     -- git signs in sign column

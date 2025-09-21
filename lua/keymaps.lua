@@ -86,6 +86,9 @@ M.init = function()
 
   -- close other windows
   vim.keymap.set('n', '<leader>o', ':only<CR>', { silent = true })
+
+  -- match to bracket
+  vim.keymap.set({ 'n', 'v' }, '<leader>m', '%')
 end
 
 -- lsp keymaps are defined during on_attach (lsp.lua)
@@ -236,9 +239,6 @@ M.set_keymaps_for_plugins = function()
       { 'k', '<C-u>zz', { desc = 'page up' } },
     },
   })
-
-  -- alternative to jump match - defined after plugins to use match-up
-  vim.keymap.set({ 'n', 'v' }, '<leader>m', '<plug>(matchup-%)')
 end
 
 return M
