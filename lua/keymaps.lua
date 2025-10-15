@@ -197,6 +197,7 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set({ 'n', 'x' }, '<leader>cs', ':CodeBridgeTmux<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>ci', ':CodeBridgeTmuxInteractive<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>ca', ':CodeBridgeTmuxAllInteractive<CR>', { silent = true })
+  vim.keymap.set({ 'n', 'x' }, '<leader>cr', ':CodeBridgeResumePrompt<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>c', '<Nop>', { silent = true })
 
   -- create hydras for page scrolling

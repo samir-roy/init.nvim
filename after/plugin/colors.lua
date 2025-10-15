@@ -31,6 +31,3 @@ require('ibl').setup {
     priority = 9,
   }
 }
-
--- configure matchup word highlight color
-vim.api.nvim_set_hl(0, 'MatchWord', { bg = '#292922' })

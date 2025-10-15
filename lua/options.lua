@@ -51,6 +51,9 @@ M.init = function()
   -- turn on smartcase when searching
   vim.cmd('set ignorecase smartcase')
 
+  -- check for file changes when switching focus
+  vim.api.nvim_create_autocmd({ 'FocusGained' }, { pattern = '*', command = 'checktime' })
+
   -- user defined function to copy relative path
   vim.api.nvim_create_user_command('CopyRelPath', function()
     local path = vim.fn.expand('%:.')
