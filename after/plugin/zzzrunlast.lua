@@ -5,8 +5,9 @@
 -- keymaps are set the end of this file after loading all plugins
 
 require('code-bridge').setup({
-  interactive = {
-    use_telescope = false
+  tmux = {
+    window_name = 'opencode',
+    process_name = 'opencode',
   }
 })
 
