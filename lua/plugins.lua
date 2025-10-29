@@ -50,23 +50,14 @@ M.init = function()
     { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- treesitter for parsing
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    -- language server support
-    {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v3.x',
-      dependencies = {
-        -- manage lsp servers
-        { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
-        -- lsp support
-        { 'neovim/nvim-lspconfig' },
-        -- autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'L3MON4D3/LuaSnip' },
-        { 'j-hui/fidget.nvim' },
-      }
-    },
+    -- language server management
+    { 'williamboman/mason.nvim', dependencies = { 'williamboman/mason-lspconfig.nvim' } },
+    -- autocompletion
+    { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
+    -- lspconfig is deprecated but we need it to configure eslint
+    { 'neovim/nvim-lspconfig' },
+    -- lsp progress indicator
+    { 'j-hui/fidget.nvim' },
   }, {
     checker = {
       frequency = 30 * 24 * 60 * 60,

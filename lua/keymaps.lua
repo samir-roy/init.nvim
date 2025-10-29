@@ -93,9 +93,7 @@ end
 
 -- lsp keymaps are defined during on_attach (lsp.lua)
 M.set_keymaps_for_lsp = function(bufnr)
-  -- see :help lsp-zero-keybindings to learn the available actions
   local opts = { buffer = bufnr, remap = false }
-  require('lsp-zero').default_keymaps(opts)
 
   -- show hover info
   vim.keymap.set('n', '<leader>i', function() vim.lsp.buf.hover({ border = 'rounded' }) end, opts)
@@ -130,6 +128,11 @@ M.set_keymaps_for_gitsigns = function(bufnr)
   vim.keymap.set('n', '[c', function()
     if vim.wo.diff then return '[c' end
     vim.schedule(function() gs.prev_hunk() end)
+    return '<Ignore>'
+  end, { expr = true, buffer = bufnr })
+
+  vim.keymap.set('n', '<leader>U', function()
+    vim.schedule(function() gs.preview_hunk() end)
     return '<Ignore>'
   end, { expr = true, buffer = bufnr })
 end
