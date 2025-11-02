@@ -147,23 +147,38 @@ M.set_keymaps_for_plugins = function()
 
   -- picker for files that are not gitignored
   vim.keymap.set('n', '<leader>p', function()
-    telescope.find_files({ respect_gitignore = true, hidden = false })
+    telescope.find_files({
+      respect_gitignore = true,
+      hidden = false,
+      file_ignore_patterns = { "ios/", "android/" },
+    })
   end, {})
 
   -- find files in project folder
   vim.keymap.set('n', '<leader>fp', telescope.find_files, {})
 
   -- find word under the cursor
-  vim.keymap.set({ 'n', 'v' }, '<leader>fw', telescope.grep_string, {})
+  vim.keymap.set({ 'n', 'v' }, '<leader>fw', function()
+    telescope.grep_string({
+      file_ignore_patterns = { "package%-lock%.json" }
+    })
+  end, {})
 
   -- find using grep
-  vim.keymap.set('n', '<leader>ff', telescope.live_grep, {})
+  vim.keymap.set('n', '<leader>ff', function()
+    telescope.live_grep({
+      file_ignore_patterns = { "package%-lock%.json" }
+    })
+  end, {})
+
 
   -- find kontinue (reopen results)
   vim.keymap.set('n', '<leader>fk', telescope.resume, {})
 
   -- tabs (list of open buffers)
-  vim.keymap.set('n', '<leader>t', telescope.buffers, {})
+  vim.keymap.set('n', '<leader>t', function()
+    require('tab_picker').show()
+  end, {})
 
   -- list of diagnostics in project
   vim.keymap.set('n', '<leader>fd', telescope.diagnostics, {})
