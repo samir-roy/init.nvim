@@ -4,12 +4,7 @@
 -- this file is named zzzrunlast.lua to ensure it is loaded last
 -- keymaps are set the end of this file after loading all plugins
 
-require('code-bridge').setup({
-  tmux = {
-    window_name = 'opencode',
-    process_name = 'opencode',
-  }
-})
+require('code-bridge').setup()
 
 require('nvim-surround').setup()
 
