@@ -102,7 +102,7 @@ M.set_keymaps_for_lsp = function(bufnr)
   -- go to definition - same as gd
   vim.keymap.set('n', '<leader>g', function() vim.lsp.buf.definition() end, opts)
   -- open diagnostics float
-  vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float({ border = 'rounded' }) end, opts)
 
   -- format using lsp
   vim.keymap.set({ 'n', 'x' }, '<leader>.', function()
