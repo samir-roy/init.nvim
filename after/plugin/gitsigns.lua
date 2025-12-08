@@ -36,36 +36,6 @@ require('gitsigns').setup {
     col = 1
   },
   on_attach = function(bufnr)
-    -- track if blame is enabled since we can only toggle
-    local blame_enabled = false
-
-    -- function to toggle blame for the current line
-    function GitsignsToggleBlame()
-      blame_enabled = not blame_enabled
-      vim.cmd("Gitsigns toggle_current_line_blame")
-    end
-
-    -- function to disable blame if enabled
-    function GitsignsDisableBlame()
-      if blame_enabled then
-        blame_enabled = false
-        vim.cmd("Gitsigns toggle_current_line_blame")
-      end
-    end
-
-    -- autocommand to turn off git blame when cursor moves
-    -- vim.api.nvim_exec([[
-    --   augroup ToggleBlameAutocmd
-    --   autocmd!
-    --   autocmd CursorMoved * lua GitsignsDisableBlame()
-    --   augroup END
-    -- ]], false)
-
-    -- define command :Blame to manually trigger the function
-    vim.api.nvim_exec([[
-      command! Blame lua GitsignsToggleBlame()
-    ]], false)
-
     require('keymaps').set_keymaps_for_gitsigns(bufnr)
   end
 }

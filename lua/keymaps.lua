@@ -131,10 +131,26 @@ M.set_keymaps_for_gitsigns = function(bufnr)
     return '<Ignore>'
   end, { expr = true, buffer = bufnr })
 
-  vim.keymap.set('n', '<leader>U', function()
+  -- preview changes in current hunk
+  vim.keymap.set('n', '<leader>u', function()
     vim.schedule(function() gs.preview_hunk() end)
     return '<Ignore>'
   end, { expr = true, buffer = bufnr })
+
+  -- open gitui via terminal
+  vim.keymap.set('n', '<leader>G', function()
+    vim.cmd('terminal gitui')
+    vim.cmd('startinsert')
+    vim.api.nvim_create_autocmd("TermClose", {
+      buffer = vim.api.nvim_get_current_buf(),
+      callback = function()
+        if vim.v.event.status == 0 then
+          vim.cmd("bdelete!")
+        end
+      end,
+      once = true,
+    })
+  end)
 end
 
 -- plugin keymaps are defined after all plugins have loaded (zzzrunlast.lua)
@@ -204,7 +220,7 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set('v', '<leader>sw', '<ESC><CMD>lua require("spectre").open_visual()<CR><C-w>o')
 
   -- show / hide undo tree
-  vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+  vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle)
 
   -- comment / uncomment current line or selection
   vim.keymap.set({ 'n', 'x' }, '<leader>/', ':CommentToggle<CR>', { silent = true })
