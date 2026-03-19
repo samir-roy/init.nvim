@@ -56,6 +56,7 @@ The leader key is `<space>` since the space bar is easy to reach.
 
 ### Buffer Navigation
 - `<leader>fc` - close current buffer
+- `<leader>o` - close all other splits
 - `<leader>l` - jump to last accessed buffer
 - `<leader>1-9` - jump to nth buffer
 - `<leader>[` - previous buffer
@@ -65,7 +66,7 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `<leader>b` - jump to line start (same as $)
 - `<leader>e` - jump to line end (same as ^)
 - `<leader>m` - jump to matching bracket (same as %)
-- `<leader>j/k` - page down/up (centered)
+- `<leader>j/k` - page down/up (with repeatable j/k)
 - `[[` and `]]` - jump to prev/next in jump list
 - `]c` and `[c` - jump to prev/next hunk (git change)
 
@@ -80,9 +81,11 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `?` - clear search highlighting
 - `<leader>n` - search for current word while keeping cursor in place
 - `<leader>r` - search and replace current word
-- `<leader>u` - show / hide undo tree
+- `<leader>U` - show / hide undo tree
+- `<leader>u` - show git hunk under cursor (if any)
 - `<leader>w` - save all buffers (same as :wa)
 - `<leader>W` - save current buffer (same as :w)
+- `<leader>fg` - open diffview
 
 ### Visual Mode
 - `L` - easily move selected lines down
@@ -114,3 +117,12 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `<leader>S` - search and replace in split screen
 - `<leader>sw` - search for word under the cursor
 - `<leader>sw` (visual) - search for text in selection
+
+### Code Bridge
+- `<leader>cc` - quick chat with coding agent including file or selection context
+- `<leader>cq` - quick chat with coding agent without file context
+- `<leader>cs` - send context to coding agent
+- `<leader>ci` - send context to interactive prompt composer
+- `<leader>ca` - send all open files to interactive prompt composer
+- `<leader>cr` - resume interactive prompt composer
+
