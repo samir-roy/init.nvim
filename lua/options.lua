@@ -46,7 +46,10 @@ M.init = function()
   vim.opt.isfname:append('@-@')
 
   -- change the end of buffer character (default ~)
-  vim.o.fillchars = vim.o.fillchars .. 'eob:·'
+  vim.opt.fillchars:append { eob = "·" }
+
+  -- change the diff empty character (default -)
+  vim.opt.fillchars:append { diff = "·" }
 
   -- turn on smartcase when searching
   vim.cmd('set ignorecase smartcase')

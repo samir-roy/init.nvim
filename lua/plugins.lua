@@ -44,6 +44,8 @@ M.init = function()
     { 'kylechui/nvim-surround', version = "^3", event = "VeryLazy" },
     -- hydra allows for custom submodes used for page scroll mapping
     { 'nvimtools/hydra.nvim' },
+    -- diff view for git changes
+    { 'sindrets/diffview.nvim' },
     -- git blame
     { 'f-person/git-blame.nvim' },
     -- git signs in sign column

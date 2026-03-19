@@ -172,7 +172,6 @@ M.set_keymaps_for_plugins = function()
     })
   end, {})
 
-
   -- find kontinue (reopen results)
   vim.keymap.set('n', '<leader>fk', telescope.resume, {})
 
@@ -188,6 +187,9 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set('n', '<leader>fr', function()
     require('telescope').extensions.recent_files.pick({ only_cwd = true })
   end)
+
+  -- open git diffview
+  vim.keymap.set('n', '<leader>fg', ':DiffviewOpen<CR>', {})
 
   -- toggle file explorer using nvim-tree
   vim.keymap.set('n', '<leader>x', ':NvimTreeToggle<CR>', { silent = true })
@@ -218,6 +220,9 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set({ 'n', 'x' }, '<leader>ca', ':CodeBridgeTmuxAllInteractive<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>cr', ':CodeBridgeResumePrompt<CR>', { silent = true })
   vim.keymap.set({ 'n', 'x' }, '<leader>c', '<Nop>', { silent = true })
+
+  -- open startify dashboard
+  vim.keymap.set({ 'n', 'x' }, '<leader>fs', ':Startify<CR>', { silent = true })
 
   -- open gitui in a terminal buffer (not a plugin)
   vim.keymap.set('n', '<leader>G', function()
