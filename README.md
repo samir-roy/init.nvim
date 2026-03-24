@@ -85,7 +85,8 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `<leader>u` - show git hunk under cursor (if any)
 - `<leader>w` - save all buffers (same as :wa)
 - `<leader>W` - save current buffer (same as :w)
-- `<leader>fg` - open diffview
+- `<leader>fh` - show all git hunks
+- `<leader>fl` - show git log for current file
 
 ### Visual Mode
 - `L` - easily move selected lines down
@@ -111,6 +112,7 @@ The leader key is `<space>` since the space bar is easy to reach.
 - `<leader>fk` - kontinue find (reopen results)
 - `<leader>fd` - files having diagnostics
 - `<leader>fr` - recently opened files
+- `<leader>fg` - files in git status
 
 ### Search and Replace in Files (using spectre)
 - `<leader>ss` - search and replace

@@ -136,6 +136,12 @@ M.set_keymaps_for_gitsigns = function(bufnr)
     vim.schedule(function() gs.preview_hunk() end)
     return '<Ignore>'
   end, { expr = true, buffer = bufnr })
+
+  -- open diff for current file
+  vim.keymap.set('n', '<leader>fh', function()
+    vim.schedule(function() gs.diffthis() end)
+    return '<Ignore>'
+  end, { expr = true, buffer = bufnr })
 end
 
 -- plugin keymaps are defined after all plugins have loaded (zzzrunlast.lua)
@@ -188,8 +194,15 @@ M.set_keymaps_for_plugins = function()
     require('telescope').extensions.recent_files.pick({ only_cwd = true })
   end)
 
-  -- open git diffview
-  vim.keymap.set('n', '<leader>fg', ':DiffviewOpen<CR>', {})
+  -- open list of git changes with diff preview
+  vim.keymap.set('n', '<leader>fg', function()
+    require('telescope.builtin').git_status({ initial_mode = 'normal' })
+  end)
+
+  -- open git log for current buffer
+  vim.keymap.set('n', '<leader>fl', function()
+    require('telescope.builtin').git_bcommits({ initial_mode = 'normal' })
+  end)
 
   -- toggle file explorer using nvim-tree
   vim.keymap.set('n', '<leader>x', ':NvimTreeToggle<CR>', { silent = true })

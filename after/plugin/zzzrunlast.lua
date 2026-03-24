@@ -25,23 +25,5 @@ require('spectre').setup({
   }
 })
 
-require("diffview").setup({
-  enhanced_diff_hl = true,
-  use_icons = false,
-  signs = {
-    fold_closed = "+ ",
-    fold_open = "- ",
-    done = "✓",
-  },
-  keymaps = {
-    file_panel = {
-      { "n", "q", ':DiffviewClose<CR>', { desc = "Close Diffview" } },
-    },
-    file_history_panel = {
-      { "n", "q", ':DiffviewClose<CR>', { desc = "Close Diffview" } },
-    },
-  },
-})
-
 -- keymaps for plugins are set at end
 require('keymaps').set_keymaps_for_plugins()
