@@ -28,22 +28,22 @@ M.init = function()
   vim.keymap.set('n', '<leader>fc', ':bd<CR>', { silent = true })
 
   -- jump to last buffer (last accessed, not last in buffer list)
-  vim.api.nvim_set_keymap('n', '<leader>l', '<CMD>b#<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>l', '<CMD>b#<CR>', { silent = true })
 
   -- jump to n-th buffer in buffer list (n-th lowest numbered buffer, not the buffer number)
-  vim.api.nvim_set_keymap('n', '<leader>1', '<CMD>bf<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>2', '<CMD>bf | bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>3', '<CMD>bf | 2bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>4', '<CMD>bf | 3bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>5', '<CMD>bf | 4bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>6', '<CMD>bf | 5bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>7', '<CMD>bf | 6bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>8', '<CMD>bf | 7bn<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>9', '<CMD>bf | 8bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>1', '<CMD>bf<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>2', '<CMD>bf | bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>3', '<CMD>bf | 2bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>4', '<CMD>bf | 3bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>5', '<CMD>bf | 4bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>6', '<CMD>bf | 5bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>7', '<CMD>bf | 6bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>8', '<CMD>bf | 7bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>9', '<CMD>bf | 8bn<CR>', { silent = true })
 
   -- jump to prev/next buffer in buffer list
-  vim.api.nvim_set_keymap('n', '<leader>[', '<CMD>bN<CR>', { silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>]', '<CMD>bn<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>[', '<CMD>bN<CR>', { silent = true })
+  vim.keymap.set('n', '<leader>]', '<CMD>bn<CR>', { silent = true })
 
   -- clear search buffer
   vim.keymap.set('n', '?', [[:noh | echo ""<CR>]])
@@ -116,20 +116,52 @@ end
 -- gitsigns keymaps are defined during on_attach (gitsigns.lua)
 M.set_keymaps_for_gitsigns = function(bufnr)
   local gs = require('gitsigns')
+  local hydra = require('hydra')
+
+  -- define hydra without body to activate after jumping to hunk
+  local git_hydra = hydra({
+    name = 'git hunks',
+    mode = 'n',
+    config = {
+      timeout = 2500,
+      on_key = function() vim.wait(50) end,
+      hint = { type = 'cmdline', show_name = true },
+    },
+    heads = {
+      { ']', gs.next_hunk, { desc = 'next', buffer = bufnr } },
+      { '[', gs.prev_hunk, { desc = 'prev', buffer = bufnr } },
+      { 'p', gs.preview_hunk, { desc = 'preview', buffer = bufnr } },
+      { 'R', gs.reset_hunk, { desc = 'RESET', exit = true, buffer = bufnr } },
+      { 'q', nil, { desc = 'exit', exit = true, nowait = true } },
+    },
+  })
+
+  -- jumps to hunk in direction and activates the git hydra
+  local function jump_to_hunk(direction)
+    if vim.wo.diff then
+      vim.cmd('normal! ' .. (direction == 'next' and ']c' or '[c'))
+      return
+    end
+    local hunks = gs.get_hunks(bufnr)
+    vim.cmd('Gitsigns ' .. direction .. '_hunk')
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      buffer = bufnr,
+      once = true,
+      callback = function()
+        if not hunks or #hunks == 0 then
+          print('')
+          return
+        end
+        git_hydra:activate()
+      end,
+    })
+  end
 
   -- jump to next hunk
-  vim.keymap.set('n', ']c', function()
-    if vim.wo.diff then return ']c' end
-    vim.schedule(function() gs.next_hunk() end)
-    return '<Ignore>'
-  end, { expr = true, buffer = bufnr })
+  vim.keymap.set('n', ']c', function() jump_to_hunk('next') end, { buffer = bufnr })
 
   -- jump to prev hunk
-  vim.keymap.set('n', '[c', function()
-    if vim.wo.diff then return '[c' end
-    vim.schedule(function() gs.prev_hunk() end)
-    return '<Ignore>'
-  end, { expr = true, buffer = bufnr })
+  vim.keymap.set('n', '[c', function() jump_to_hunk('prev') end, { buffer = bufnr })
 
   -- preview changes in current hunk
   vim.keymap.set('n', '<leader>u', function()
@@ -217,6 +249,7 @@ M.set_keymaps_for_plugins = function()
   vim.keymap.set('n', '<leader>sw', '<CMD>lua require("spectre").open_visual({select_word=true})<CR><C-w>o')
 
   -- search for selection in visual mode using spectre
+  vim.keymap.set('v', '<leader>ss', '<ESC><CMD>lua require("spectre").open_visual()<CR><C-w>o')
   vim.keymap.set('v', '<leader>sw', '<ESC><CMD>lua require("spectre").open_visual()<CR><C-w>o')
 
   -- show / hide undo tree
@@ -252,8 +285,52 @@ M.set_keymaps_for_plugins = function()
     })
   end)
 
-  -- create hydras for page scrolling
+  -- create hydras
   local hydra = require('hydra')
+
+  -- define hydra without body to activate when navigating diagnostics
+  local diagnostics_hydra = hydra({
+    name = 'diagnostics',
+    mode = 'n',
+    config = {
+      timeout = 5000,
+      on_key = function() vim.wait(50) end,
+      hint = { type = 'cmdline', show_name = true },
+    },
+    heads = {
+      { ']', function()
+        vim.diagnostic.goto_next({ float = { border = 'rounded' } })
+      end, { desc = 'next' } },
+      { '[', function()
+        vim.diagnostic.goto_prev({ float = { border = 'rounded' } })
+      end, { desc = 'prev' } },
+      { 'a', vim.lsp.buf.code_action, { desc = 'actions', exit = true } },
+      { 'q', nil, { desc = 'exit', exit = true, nowait = true } },
+    },
+  })
+
+  -- jumps to diagnostic in direction and activates the hydra
+  local function jump_to_diagnostic(goto_fn)
+    local diagnostics = vim.diagnostic.get(0)
+    goto_fn({ float = { border = 'rounded' } })
+    if #diagnostics > 0 then
+      vim.schedule(function() diagnostics_hydra:activate() end)
+    else
+      vim.api.nvim_create_autocmd('CursorMoved', {
+        buffer = 0,
+        once = true,
+        callback = function() print('') end,
+      })
+    end
+  end
+
+  -- jump to next diagnostic
+  vim.keymap.set('n', ']d', function() jump_to_diagnostic(vim.diagnostic.goto_next) end)
+
+  -- jump prev diagnostic
+  vim.keymap.set('n', '[d', function() jump_to_diagnostic(vim.diagnostic.goto_prev) end)
+
+  -- define hydra for scrolling down
   hydra({
     name = 'scroll down',
     mode = { 'n', 'x' },
@@ -271,10 +348,13 @@ M.set_keymaps_for_plugins = function()
     },
     heads = {
       { 'j', '<C-d>zz', { desc = 'page down' } },
+      { 'q', nil, { desc = 'exit', exit = true, nowait = true } },
     },
   })
+
+  -- define hydra for scrolling up
   hydra({
-    name = 'scroll down',
+    name = 'scroll up',
     mode = { 'n', 'x' },
     body = '<leader>k',
     config = {
@@ -290,6 +370,7 @@ M.set_keymaps_for_plugins = function()
     },
     heads = {
       { 'k', '<C-u>zz', { desc = 'page up' } },
+      { 'q', nil, { desc = 'exit', exit = true, nowait = true } },
     },
   })
 end
