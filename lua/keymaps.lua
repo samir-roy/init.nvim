@@ -233,7 +233,22 @@ M.set_keymaps_for_plugins = function()
 
   -- open git log for current buffer
   vim.keymap.set('n', '<leader>fl', function()
-    require('telescope.builtin').git_bcommits({ initial_mode = 'normal' })
+    local actions = require('telescope.actions')
+    require('telescope.builtin').git_bcommits({
+      initial_mode = 'normal',
+      attach_mappings = function(_, map)
+        local function diff_against_commit(prompt_bufnr)
+          local entry = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+          actions.close(prompt_bufnr)
+          if entry and entry.value then
+            require('gitsigns').diffthis(entry.value)
+          end
+        end
+        map('n', '<CR>', diff_against_commit)
+        map('n', 'r', actions.git_checkout_current_buffer)
+        return true
+      end,
+    })
   end)
 
   -- toggle file explorer using nvim-tree
