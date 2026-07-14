@@ -62,6 +62,13 @@ vim.lsp.config('graphql', {
   root_markers = { '.graphqlrc', '.graphql.config.js', 'package.json' },
 })
 
+-- configure oxlint language server
+vim.lsp.config('oxlint', {
+  cmd = { 'oxc_language_server' },
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_markers = { 'package.json', '.oxlintrc.json', 'oxlint.json' },
+})
+
 -- configure esLint using traditional lspconfig (couldn't make it work with vim.lsp.config)
 -- also lspconfig has been deprecated, so suppress the warning
 local original_deprecate = vim.deprecate
@@ -103,10 +110,11 @@ vim.lsp.enable('lua_ls')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('graphql')
+vim.lsp.enable('oxlint')
 -- eslint is enabled using lspconfig above
 
 -- set up mason for managing language servers
-local language_servers = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint', 'graphql' }
+local language_servers = { 'lua_ls', 'rust_analyzer', 'ts_ls', 'eslint', 'graphql', 'oxlint' }
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = language_servers,
