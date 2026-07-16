@@ -56,19 +56,6 @@ M.init = function()
 
   -- check for file changes when switching focus
   vim.api.nvim_create_autocmd({ 'FocusGained' }, { pattern = '*', command = 'checktime' })
-
-  -- user defined function to copy relative path
-  vim.api.nvim_create_user_command('CopyRelPath', function()
-    local path = vim.fn.expand('%:.')
-    vim.fn.setreg('+', path)
-    vim.notify('Copied: ' .. path)
-  end, {})
-
-  -- format using dprint
-  vim.api.nvim_create_user_command('F', function()
-    vim.cmd('write')
-    vim.cmd('silent! !npx dprint fmt %')
-  end, {})
 end
 
 return M
