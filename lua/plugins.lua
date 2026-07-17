@@ -49,7 +49,7 @@ M.init = function()
     -- git signs in sign column
     { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- treesitter for parsing
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter', branch = 'main', lazy = false, build = ':TSUpdate' },
     -- language server management
     { 'williamboman/mason.nvim', dependencies = { 'williamboman/mason-lspconfig.nvim' } },
     -- autocompletion
