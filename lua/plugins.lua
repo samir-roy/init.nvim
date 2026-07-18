@@ -35,7 +35,7 @@ M.init = function()
     -- undo history with branching
     { 'mbbill/undotree' },
     -- telescope for finding and opening buffers
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     -- recent files in telescope
     { 'smartpde/telescope-recent-files' },
     -- find and replace text in files
